@@ -3,13 +3,15 @@ class Menu:
         self.os = os
         self.options = ["Option 1", "Option 2", "Option 3"]
         self.selected_index = 0
+        self.os.store_score(10)  # Initialize score storage
 
     def step(self, keypressed):
         """
         Game event loop
         """
 
-        self.os.display_score(69,5,5)
+        score = self.os.get_score()
+        self.os.display_score(score,5,5)
 
         self.os.blit(
             "blue_square" if self.selected_index == 0 else "red_square", 25, 15

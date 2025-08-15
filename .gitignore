@@ -2,3 +2,5 @@ build/
 .cache/
 *.env
 *.pyc
+disk/*
+!disk/.gitkeep
