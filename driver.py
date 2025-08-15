@@ -19,7 +19,7 @@ class Driver:
         }
 
         self.prev_keys_pressed = [0] * 7
-        
+
         self.os = NAPOperatingSystem(self)
 
     def start(self):
@@ -32,7 +32,7 @@ class Driver:
 
             keys_pressed = self.get_key_pressed_array()
             keys_clicked = self.get_key_clicked_array(keys_pressed)
-            
+
             # clear the screen
             self.display.fill((0, 1, 0))
             self.os.step(keys_clicked, None)
