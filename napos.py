@@ -7,6 +7,7 @@ class NAPOperatingSystem:
         self.selected_index = 1
         self.x_coord = 25
         self.current_scene = Menu(self)
+        self.rgb_led = [(0, 0, 0)] * 5  # rgb
 
     def step(self, keypressed, gyro_data):
         """
@@ -15,6 +16,7 @@ class NAPOperatingSystem:
         if keypressed[6]:  # go back to the menu when the home button is pressed
             self.change_scene("menu")
         self.current_scene.step(keypressed)
+        self._show_led()
 
     def blit(self, asset_id, x, y):
         """
@@ -62,3 +64,8 @@ class NAPOperatingSystem:
             self.current_scene = Aliens(self)
         else:
             raise ValueError(f"Unknown scene: {scene_name}")
+
+    def _show_led(self):
+        for i, color in enumerate(self.rgb_led):
+            self.driver.rgb_led[i] = (color[1], color[0], color[2])
+        self.driver.rgb_led_show()

@@ -9,7 +9,7 @@ class Driver:
 
     def __init__(self):
         pygame.init()
-        self.display = pygame.display.set_mode((600, 800))
+        self.display = pygame.display.set_mode((600, 905))
         self.display.fill((0, 1, 0))
         self.clock = pygame.time.Clock()
 
@@ -34,6 +34,10 @@ class Driver:
 
         self.prev_keys_pressed = [0] * 7
 
+        # LED strip state - 5 LEDs, each can be (R, G, B) or (0, 0, 0) for off
+        self._led_states = [(0, 0, 0)] * 5
+        self.rgb_led = [(0, 0, 0)] * 5
+
         self.os = NAPOperatingSystem(self)
 
     def start(self):
@@ -50,6 +54,8 @@ class Driver:
             # clear the screen
             self.display.fill((0, 1, 0))
             self.os.step(keys_clicked, None)
+
+            self._render_led_strip()
 
             self.prev_keys_pressed = keys_pressed.copy()
 
@@ -110,3 +116,25 @@ class Driver:
         complete_path = "./disk" + file_path
         with open(complete_path, "rb") as file:
             return file.read()
+
+    def rgb_led_show(self):
+        """
+        Show the RGB LED strip.
+        """
+        for i, color in enumerate(self.rgb_led):
+            self._led_states[i] = (color[1], color[0], color[2])
+
+    def _render_led_strip(self):
+        """
+        Render the LED strip at the bottom of the display as pixel art squares.
+        """
+        led_size = 80
+        led_gap = 50
+        strip_y = 815
+
+        pygame.draw.rect(self.display, (100, 100, 100), (0, 800, 600, 5))
+
+        for i in range(5):
+            x = i * (led_size + led_gap)
+            color = self._led_states[i]
+            pygame.draw.rect(self.display, color, (x, strip_y, led_size, led_size))
