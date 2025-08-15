@@ -41,6 +41,9 @@ class Driver:
             "load8": pygame.image.load("assets/utils/loading8.png").convert_alpha(),
             "load9": pygame.image.load("assets/utils/loading9.png").convert_alpha(),
             "load10": pygame.image.load("assets/utils/loading10.png").convert_alpha(),
+            "playagain": pygame.image.load(
+                "assets/utils/playagain.png"
+            ).convert_alpha(),
             "battery_1by7": pygame.image.load(
                 "assets/utils/battery_1by7.png"
             ).convert_alpha(),
