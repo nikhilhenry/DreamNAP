@@ -14,22 +14,91 @@ class Driver:
         self.clock = pygame.time.Clock()
 
         self.asset_map = {
-            "red_square": pygame.image.load("assets/red_square.bmp").convert(),
-            "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
-            "menu_aliens": pygame.image.load("assets/menu_aliens.png").convert_alpha(),
-            "menu_tetris": pygame.image.load("assets/menu_tetris.png").convert_alpha(),
+            "menu_aliens": pygame.image.load(
+                "assets/menu/menu_aliens.png"
+            ).convert_alpha(),
+            "menu_tetris": pygame.image.load(
+                "assets/menu/menu_tetris.png"
+            ).convert_alpha(),
             "menu_demo": pygame.image.load("assets/menu_demo.png").convert_alpha(),
-            "0": pygame.image.load("assets/0.png").convert_alpha(),
-            "0": pygame.image.load("assets/0.png").convert_alpha(),
-            "1": pygame.image.load("assets/1.png").convert_alpha(),
-            "2": pygame.image.load("assets/2.png").convert_alpha(),
-            "3": pygame.image.load("assets/3.png").convert_alpha(),
-            "4": pygame.image.load("assets/4.png").convert_alpha(),
-            "5": pygame.image.load("assets/5.png").convert_alpha(),
-            "6": pygame.image.load("assets/6.png").convert_alpha(),
-            "7": pygame.image.load("assets/7.png").convert_alpha(),
-            "8": pygame.image.load("assets/8.png").convert_alpha(),
-            "9": pygame.image.load("assets/9.png").convert_alpha(),
+            "0": pygame.image.load("assets/font_pack/0.png").convert_alpha(),
+            "1": pygame.image.load("assets/font_pack/1.png").convert_alpha(),
+            "2": pygame.image.load("assets/font_pack/2.png").convert_alpha(),
+            "3": pygame.image.load("assets/font_pack/3.png").convert_alpha(),
+            "4": pygame.image.load("assets/font_pack/4.png").convert_alpha(),
+            "5": pygame.image.load("assets/font_pack/5.png").convert_alpha(),
+            "6": pygame.image.load("assets/font_pack/6.png").convert_alpha(),
+            "7": pygame.image.load("assets/font_pack/7.png").convert_alpha(),
+            "8": pygame.image.load("assets/font_pack/8.png").convert_alpha(),
+            "9": pygame.image.load("assets/font_pack/9.png").convert_alpha(),
+            "load1": pygame.image.load("assets/utils/loading1.png").convert_alpha(),
+            "load2": pygame.image.load("assets/utils/loading2.png").convert_alpha(),
+            "load3": pygame.image.load("assets/utils/loading3.png").convert_alpha(),
+            "load4": pygame.image.load("assets/utils/loading4.png").convert_alpha(),
+            "load5": pygame.image.load("assets/utils/loading5.png").convert_alpha(),
+            "load6": pygame.image.load("assets/utils/loading6.png").convert_alpha(),
+            "load7": pygame.image.load("assets/utils/loading7.png").convert_alpha(),
+            "load8": pygame.image.load("assets/utils/loading8.png").convert_alpha(),
+            "load9": pygame.image.load("assets/utils/loading9.png").convert_alpha(),
+            "load10": pygame.image.load("assets/utils/loading10.png").convert_alpha(),
+            "battery_1by7": pygame.image.load(
+                "assets/utils/battery_1by7.png"
+            ).convert_alpha(),
+            "battery_2by7": pygame.image.load(
+                "assets/utils/battery_2by7.png"
+            ).convert_alpha(),
+            "battery_3by7": pygame.image.load(
+                "assets/utils/battery_3by7.png"
+            ).convert_alpha(),
+            "battery_4by7": pygame.image.load(
+                "assets/utils/battery_4by7.png"
+            ).convert_alpha(),
+            "battery_5by7": pygame.image.load(
+                "assets/utils/battery_5by7.png"
+            ).convert_alpha(),
+            "battery_6by7": pygame.image.load(
+                "assets/utils/battery_6by7.png"
+            ).convert_alpha(),
+            "battery_7by7": pygame.image.load(
+                "assets/utils/battery_7by7.png"
+            ).convert_alpha(),
+            "heart_0by3": pygame.image.load(
+                "assets/utils/heart_0by3.png"
+            ).convert_alpha(),
+            "heart_1by3": pygame.image.load(
+                "assets/utils/heart_1by3.png"
+            ).convert_alpha(),
+            "heart_2by3": pygame.image.load(
+                "assets/utils/heart_2by3.png"
+            ).convert_alpha(),
+            "heart_3by3": pygame.image.load(
+                "assets/utils/heart_3by3.png"
+            ).convert_alpha(),
+            "alien_boss": pygame.image.load("assets/aliens/boss.png").convert_alpha(),
+            "alien_cat": pygame.image.load("assets/aliens/cat.png").convert_alpha(),
+            "alien_shield_1by3": pygame.image.load(
+                "assets/aliens/shield_1by3.png"
+            ).convert_alpha(),
+            "alien_shield_2by3": pygame.image.load(
+                "assets/aliens/shield_2by3.png"
+            ).convert_alpha(),
+            "alien_shield_3by3": pygame.image.load(
+                "assets/aliens/shield_3by3.png"
+            ).convert_alpha(),
+            "alien_ship": pygame.image.load("assets/aliens/ship.png").convert_alpha(),
+            "alien_ufo1": pygame.image.load("assets/aliens/ufo1.png").convert_alpha(),
+            "alien_ufo2": pygame.image.load("assets/aliens/ufo2.png").convert_alpha(),
+            "alien_ufo3": pygame.image.load("assets/aliens/ufo3.png").convert_alpha(),
+            "tetris_i": pygame.image.load("assets/tetris/tetris_i.png").convert_alpha(),
+            "tetris_j": pygame.image.load("assets/tetris/tetris_j.png").convert_alpha(),
+            "tetris_l": pygame.image.load("assets/tetris/tetris_l.png").convert_alpha(),
+            "tetris_o": pygame.image.load("assets/tetris/tetris_o.png").convert_alpha(),
+            "tetris_s": pygame.image.load("assets/tetris/tetris_s.png").convert_alpha(),
+            "tetris_t": pygame.image.load("assets/tetris/tetris_t.png").convert_alpha(),
+            "tetris_z": pygame.image.load("assets/tetris/tetris_z.png").convert_alpha(),
+            "tetris_board": pygame.image.load(
+                "assets/tetris/tetris_board.png"
+            ).convert_alpha(),
         }
 
         self.prev_keys_pressed = [0] * 7
