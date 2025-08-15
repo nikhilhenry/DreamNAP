@@ -23,4 +23,6 @@ class Menu:
             self.selected_index += 1
         if keypressed[1]:
             self.selected_index -= 1
+        if keypressed[4]:
+            self.os.change_scene(self.options[self.selected_index])
         self.selected_index = max(0, min(self.selected_index, len(self.options) - 1))

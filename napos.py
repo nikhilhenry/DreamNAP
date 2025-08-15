@@ -1,4 +1,4 @@
-from games import Menu
+from games import Menu, Aliens
 
 
 class NAPOperatingSystem:
@@ -6,13 +6,15 @@ class NAPOperatingSystem:
         self.driver = driver
         self.selected_index = 1
         self.x_coord = 25
-        self.menu = Menu(self)
+        self.current_scene = Menu(self)
 
     def step(self, keypressed, gyro_data):
         """
         The main loop of the driver.
         """
-        self.menu.step(keypressed)
+        if keypressed[6]:  # go back to the menu when the home button is pressed
+            self.change_scene("menu")
+        self.current_scene.step(keypressed)
 
     def blit(self, asset_id, x, y):
         """
@@ -50,3 +52,13 @@ class NAPOperatingSystem:
             return 0
         except ValueError:
             return 0
+
+    def change_scene(self, scene_name):
+        if scene_name == self.current_scene.__class__.__name__.lower():
+            return
+        if scene_name == "menu":
+            self.current_scene = Menu(self)
+        elif scene_name == "aliens":
+            self.current_scene = Aliens(self)
+        else:
+            raise ValueError(f"Unknown scene: {scene_name}")
