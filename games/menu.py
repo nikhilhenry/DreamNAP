@@ -17,7 +17,7 @@ class Menu:
         score = self.os.get_score(self.options[self.selected_index])
 
         self.os.blit(f"menu_{self.options[self.selected_index]}", 0, 0)
-        self.os.display_score(score, 27, 66)
+        self.os.display_score(score, 45, 66, align="right")
 
         if keypressed[3]:
             self.selected_index += 1

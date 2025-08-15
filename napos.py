@@ -20,12 +20,16 @@ class NAPOperatingSystem:
         """
         self.driver.blit(asset_id, x, y)
 
-    def display_score(self, score, x, y):
+    def display_score(self, score, x, y, align="left"):
         """
         Display the score on the screen.
         """
-        for i, digit in enumerate(str(score)):
-            self.driver.blit(digit, x + i * 6, y)
+        if align == "left":
+            for i, digit in enumerate(str(score)):
+                self.driver.blit(digit, x + i * 6, y)
+        elif align == "right":
+            for i, digit in enumerate(reversed(str(score))):
+                self.driver.blit(digit, x - i * 6, y)
 
     def store_score(self, game, score):
         current_content = self.driver.read_file("/high_scores.txt").decode()
