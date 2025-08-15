@@ -18,6 +18,8 @@ class Driver:
             "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
         }
 
+        self.prev_keys_pressed = [0] * 7
+        
         self.os = NAPOperatingSystem(self)
 
     def start(self):
@@ -29,9 +31,13 @@ class Driver:
         while self.running:
 
             keys_pressed = self.get_key_pressed_array()
+            keys_clicked = self.get_key_clicked_array(keys_pressed)
+            
             # clear the screen
             self.display.fill((0, 1, 0))
-            self.os.step(keys_pressed, None)
+            self.os.step(keys_clicked, None)
+
+            self.prev_keys_pressed = keys_pressed.copy()
 
             pygame.display.flip()
             pygame.event.pump()
@@ -64,3 +70,13 @@ class Driver:
             keys_pressed[6] = 1
 
         return keys_pressed
+
+    def get_key_clicked_array(self, current_keys_pressed):
+        """
+        compare previous keypress state, click is detected when key transitions from 0 to 1.
+        """
+        keys_clicked = [0] * 7
+        for i in range(7):
+            if current_keys_pressed[i] == 1 and self.prev_keys_pressed[i] == 0:
+                keys_clicked[i] = 1
+        return keys_clicked
