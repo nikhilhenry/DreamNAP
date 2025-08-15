@@ -91,19 +91,19 @@ class Driver:
             if current_keys_pressed[i] == 1 and self.prev_keys_pressed[i] == 0:
                 keys_clicked[i] = 1
         return keys_clicked
-    
+
     def write_file(self, file_path, content):
         """
         Write byte array to a file.
         """
         complete_path = "./disk" + file_path
-        with open(complete_path, 'wb') as file:
+        with open(complete_path, "wb") as file:
             file.write(content)
-    
+
     def read_file(self, file_path):
         """
         Read byte array from a file.
         """
         complete_path = "./disk" + file_path
-        with open(complete_path, 'rb') as file:
+        with open(complete_path, "rb") as file:
             return file.read()

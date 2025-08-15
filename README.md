@@ -36,6 +36,6 @@ A python based emulator for the NAPBOY handheld gaming system.
 - [x] Add support for text rendering
 - [ ] return to home on home button
 - [ ] Write aliens game
-- [ ] Support for high score state 
+- [x] Support for high score state 
 - [ ] Led simulation
 - [ ] use gyro data

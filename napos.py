@@ -27,11 +27,21 @@ class NAPOperatingSystem:
         for i, digit in enumerate(str(score)):
             self.driver.blit(digit, x + i * 6, y)
 
-    def store_score(self, score):
-        self.driver.write_file("/high_scores.txt", str(score).encode())
-    def get_score(self):
+    def store_score(self, game, score):
+        current_content = self.driver.read_file("/high_scores.txt").decode()
+        current_scores = current_content.splitlines()
+        current_scores = [
+            line for line in current_scores if not line.startswith(f"{game}:")
+        ]
+        current_scores.append(f"{game}:{score}")
+        self.driver.write_file("/high_scores.txt", "\n".join(current_scores).encode())
+
+    def get_score(self, game):
         try:
-            return int(self.driver.read_file("/high_scores.txt").decode())
+            for line in self.driver.read_file("/high_scores.txt").decode().splitlines():
+                if line.startswith(f"{game}:"):
+                    return int(line.split(":")[1])
+            return 0
         except FileNotFoundError:
             return 0
         except ValueError:
