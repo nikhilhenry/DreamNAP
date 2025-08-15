@@ -10,4 +10,4 @@ class Aliens:
 
         score = self.os.get_score("aliens")
 
-        self.os.display_score(score, 45, 66, align="right")
+        self.os.display_num(score, 45, 66, align="right")

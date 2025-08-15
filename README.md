@@ -38,4 +38,8 @@ A python based emulator for the NAPBOY handheld gaming system.
 - [ ] Write aliens game
 - [x] Support for high score state 
 - [x] Led simulation
-- [ ] use gyro data
+- [ ] Use gyro data
+- [ ] Hold key input
+- [ ] Rotate a sprite
+- [x] Slow down 
+- [ ] Write Tetris 

@@ -19,7 +19,7 @@ class Menu:
         score = self.os.get_score(self.options[self.selected_index])
 
         self.os.blit(f"menu_{self.options[self.selected_index]}", 0, 0)
-        self.os.display_score(score, 45, 66, align="right")
+        self.os.display_num(score, 45, 66, align="right")
 
         # Update LED scrolling animation
         self._update_led_animation()

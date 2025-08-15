@@ -1,4 +1,4 @@
-from games import Menu, Aliens
+from games import Menu, Aliens, Tetris
 
 
 class NAPOperatingSystem:
@@ -24,15 +24,15 @@ class NAPOperatingSystem:
         """
         self.driver.blit(asset_id, x, y)
 
-    def display_score(self, score, x, y, align="left"):
+    def display_num(self, number, x, y, align="left"):
         """
-        Display the score on the screen.
+        Display the number on the screen.
         """
         if align == "left":
-            for i, digit in enumerate(str(score)):
+            for i, digit in enumerate(str(number)):
                 self.driver.blit(digit, x + i * 6, y)
         elif align == "right":
-            for i, digit in enumerate(reversed(str(score))):
+            for i, digit in enumerate(reversed(str(number))):
                 self.driver.blit(digit, x - i * 6, y)
 
     def store_score(self, game, score):
@@ -62,6 +62,8 @@ class NAPOperatingSystem:
             self.current_scene = Menu(self)
         elif scene_name == "aliens":
             self.current_scene = Aliens(self)
+        elif scene_name == "tetris":
+            self.current_scene = Tetris(self)
         else:
             raise ValueError(f"Unknown scene: {scene_name}")
 

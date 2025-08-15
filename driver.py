@@ -20,7 +20,7 @@ class Driver:
             "menu_tetris": pygame.image.load(
                 "assets/menu/menu_tetris.png"
             ).convert_alpha(),
-            "menu_demo": pygame.image.load("assets/menu_demo.png").convert_alpha(),
+            "menu_demo": pygame.image.load("assets/menu/menu_demo.png").convert_alpha(),
             "0": pygame.image.load("assets/font_pack/0.png").convert_alpha(),
             "1": pygame.image.load("assets/font_pack/1.png").convert_alpha(),
             "2": pygame.image.load("assets/font_pack/2.png").convert_alpha(),
@@ -65,18 +65,10 @@ class Driver:
             "battery_7by7": pygame.image.load(
                 "assets/utils/battery_7by7.png"
             ).convert_alpha(),
-            "heart_0by3": pygame.image.load(
-                "assets/utils/heart_0by3.png"
-            ).convert_alpha(),
-            "heart_1by3": pygame.image.load(
-                "assets/utils/heart_1by3.png"
-            ).convert_alpha(),
-            "heart_2by3": pygame.image.load(
-                "assets/utils/heart_2by3.png"
-            ).convert_alpha(),
-            "heart_3by3": pygame.image.load(
-                "assets/utils/heart_3by3.png"
-            ).convert_alpha(),
+            "heart_0by3": pygame.image.load("assets/utils/hearts0.png").convert_alpha(),
+            "heart_1by3": pygame.image.load("assets/utils/hearts1.png").convert_alpha(),
+            "heart_2by3": pygame.image.load("assets/utils/hearts2.png").convert_alpha(),
+            "heart_3by3": pygame.image.load("assets/utils/hearts3.png").convert_alpha(),
             "alien_boss": pygame.image.load("assets/aliens/boss.png").convert_alpha(),
             "alien_cat": pygame.image.load("assets/aliens/cat.png").convert_alpha(),
             "alien_shield_1by3": pygame.image.load(
@@ -92,13 +84,97 @@ class Driver:
             "alien_ufo1": pygame.image.load("assets/aliens/ufo1.png").convert_alpha(),
             "alien_ufo2": pygame.image.load("assets/aliens/ufo2.png").convert_alpha(),
             "alien_ufo3": pygame.image.load("assets/aliens/ufo3.png").convert_alpha(),
-            "tetris_i": pygame.image.load("assets/tetris/tetris_i.png").convert_alpha(),
-            "tetris_j": pygame.image.load("assets/tetris/tetris_j.png").convert_alpha(),
-            "tetris_l": pygame.image.load("assets/tetris/tetris_l.png").convert_alpha(),
-            "tetris_o": pygame.image.load("assets/tetris/tetris_o.png").convert_alpha(),
-            "tetris_s": pygame.image.load("assets/tetris/tetris_s.png").convert_alpha(),
-            "tetris_t": pygame.image.load("assets/tetris/tetris_t.png").convert_alpha(),
-            "tetris_z": pygame.image.load("assets/tetris/tetris_z.png").convert_alpha(),
+            "tetris_1": pygame.image.load("assets/tetris/1.png").convert_alpha(),
+            "tetris_2": pygame.image.load("assets/tetris/2.png").convert_alpha(),
+            "tetris_3": pygame.image.load("assets/tetris/3.png").convert_alpha(),
+            "tetris_4": pygame.image.load("assets/tetris/4.png").convert_alpha(),
+            "tetris_5": pygame.image.load("assets/tetris/5.png").convert_alpha(),
+            "tetris_6": pygame.image.load("assets/tetris/6.png").convert_alpha(),
+            "tetris_7": pygame.image.load("assets/tetris/7.png").convert_alpha(),
+            "tetris_i_0": pygame.image.load(
+                "assets/tetris/tetris_i_0.png"
+            ).convert_alpha(),
+            "tetris_j_0": pygame.image.load(
+                "assets/tetris/tetris_j_0.png"
+            ).convert_alpha(),
+            "tetris_l_0": pygame.image.load(
+                "assets/tetris/tetris_l_0.png"
+            ).convert_alpha(),
+            "tetris_o_0": pygame.image.load(
+                "assets/tetris/tetris_o_0.png"
+            ).convert_alpha(),
+            "tetris_s_0": pygame.image.load(
+                "assets/tetris/tetris_s_0.png"
+            ).convert_alpha(),
+            "tetris_t_0": pygame.image.load(
+                "assets/tetris/tetris_t_0.png"
+            ).convert_alpha(),
+            "tetris_z_0": pygame.image.load(
+                "assets/tetris/tetris_z_0.png"
+            ).convert_alpha(),
+            "tetris_i_1": pygame.image.load(
+                "assets/tetris/tetris_i_1.png"
+            ).convert_alpha(),
+            "tetris_j_1": pygame.image.load(
+                "assets/tetris/tetris_j_1.png"
+            ).convert_alpha(),
+            "tetris_l_1": pygame.image.load(
+                "assets/tetris/tetris_l_1.png"
+            ).convert_alpha(),
+            "tetris_o_1": pygame.image.load(
+                "assets/tetris/tetris_o_1.png"
+            ).convert_alpha(),
+            "tetris_s_1": pygame.image.load(
+                "assets/tetris/tetris_s_1.png"
+            ).convert_alpha(),
+            "tetris_t_1": pygame.image.load(
+                "assets/tetris/tetris_t_1.png"
+            ).convert_alpha(),
+            "tetris_z_1": pygame.image.load(
+                "assets/tetris/tetris_z_1.png"
+            ).convert_alpha(),
+            "tetris_i_2": pygame.image.load(
+                "assets/tetris/tetris_i_2.png"
+            ).convert_alpha(),
+            "tetris_j_2": pygame.image.load(
+                "assets/tetris/tetris_j_2.png"
+            ).convert_alpha(),
+            "tetris_l_2": pygame.image.load(
+                "assets/tetris/tetris_l_2.png"
+            ).convert_alpha(),
+            "tetris_o_2": pygame.image.load(
+                "assets/tetris/tetris_o_2.png"
+            ).convert_alpha(),
+            "tetris_s_2": pygame.image.load(
+                "assets/tetris/tetris_s_2.png"
+            ).convert_alpha(),
+            "tetris_t_2": pygame.image.load(
+                "assets/tetris/tetris_t_2.png"
+            ).convert_alpha(),
+            "tetris_z_2": pygame.image.load(
+                "assets/tetris/tetris_z_2.png"
+            ).convert_alpha(),
+            "tetris_i_3": pygame.image.load(
+                "assets/tetris/tetris_i_3.png"
+            ).convert_alpha(),
+            "tetris_j_3": pygame.image.load(
+                "assets/tetris/tetris_j_3.png"
+            ).convert_alpha(),
+            "tetris_l_3": pygame.image.load(
+                "assets/tetris/tetris_l_3.png"
+            ).convert_alpha(),
+            "tetris_o_3": pygame.image.load(
+                "assets/tetris/tetris_o_3.png"
+            ).convert_alpha(),
+            "tetris_s_3": pygame.image.load(
+                "assets/tetris/tetris_s_3.png"
+            ).convert_alpha(),
+            "tetris_t_3": pygame.image.load(
+                "assets/tetris/tetris_t_3.png"
+            ).convert_alpha(),
+            "tetris_z_3": pygame.image.load(
+                "assets/tetris/tetris_z_3.png"
+            ).convert_alpha(),
             "tetris_board": pygame.image.load(
                 "assets/tetris/tetris_board.png"
             ).convert_alpha(),
@@ -124,7 +200,7 @@ class Driver:
             keys_clicked = self.get_key_clicked_array(keys_pressed)
 
             # clear the screen
-            self.display.fill((0, 1, 0))
+            # self.display.fill((0, 1, 0))
             self.os.step(keys_clicked, None)
 
             self._render_led_strip()
