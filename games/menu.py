@@ -8,6 +8,9 @@ class Menu:
         """
         Game event loop
         """
+
+        self.os.display_score(69,5,5)
+
         self.os.blit(
             "blue_square" if self.selected_index == 0 else "red_square", 25, 15
         )

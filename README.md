@@ -29,3 +29,13 @@ A python based emulator for the NAPBOY handheld gaming system.
 
 - `driver.set_pallete([Array of RGB Color object])`
 - `driver.set_background_color`
+- `[driver api for file writing]`
+
+## Todos
+- [ ] Add graphics to menu
+- [ ] Add support for text rendering
+- [ ] return to home on home button
+- [ ] Write aliens game
+- [ ] Support for high score state 
+- [ ] Led simulation
+- [ ] use gyro data

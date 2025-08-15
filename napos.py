@@ -19,3 +19,10 @@ class NAPOperatingSystem:
         Blit the asset on the display at the given coordinates.
         """
         self.driver.blit(asset_id, x, y)
+
+    def display_score(self, score, x, y):
+        """
+        Display the score on the screen.
+        """
+        for i, digit in enumerate(str(score)):
+            self.driver.blit(digit, x + i * 6, y)

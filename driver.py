@@ -16,6 +16,17 @@ class Driver:
         self.asset_map = {
             "red_square": pygame.image.load("assets/red_square.bmp").convert(),
             "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
+            "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
+            "0": pygame.image.load("assets/0.png").convert_alpha(),
+            "1": pygame.image.load("assets/1.png").convert_alpha(),
+            "2": pygame.image.load("assets/2.png").convert_alpha(),
+            "3": pygame.image.load("assets/3.png").convert_alpha(),
+            "4": pygame.image.load("assets/4.png").convert_alpha(),
+            "5": pygame.image.load("assets/5.png").convert_alpha(),
+            "6": pygame.image.load("assets/6.png").convert_alpha(),
+            "7": pygame.image.load("assets/7.png").convert_alpha(),
+            "8": pygame.image.load("assets/8.png").convert_alpha(),
+            "9": pygame.image.load("assets/9.png").convert_alpha(),
         }
 
         self.prev_keys_pressed = [0] * 7
