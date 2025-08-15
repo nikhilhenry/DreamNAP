@@ -32,7 +32,7 @@ A python based emulator for the NAPBOY handheld gaming system.
 - `[driver api for file writing]`
 
 ## Todos
-- [ ] Add graphics to menu
+- [x] Add graphics to menu
 - [x] Add support for text rendering
 - [ ] return to home on home button
 - [ ] Write aliens game

@@ -16,7 +16,10 @@ class Driver:
         self.asset_map = {
             "red_square": pygame.image.load("assets/red_square.bmp").convert(),
             "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
-            "blue_square": pygame.image.load("assets/blue_square.bmp").convert(),
+            "menu_aliens": pygame.image.load("assets/menu_aliens.png").convert_alpha(),
+            "menu_tetris": pygame.image.load("assets/menu_tetris.png").convert_alpha(),
+            "menu_demo": pygame.image.load("assets/menu_demo.png").convert_alpha(),
+            "0": pygame.image.load("assets/0.png").convert_alpha(),
             "0": pygame.image.load("assets/0.png").convert_alpha(),
             "1": pygame.image.load("assets/1.png").convert_alpha(),
             "2": pygame.image.load("assets/2.png").convert_alpha(),
