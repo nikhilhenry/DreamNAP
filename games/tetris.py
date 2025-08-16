@@ -1,25 +1,25 @@
 import random
-import copy
 
 
 class TETROMINO:
-    def __init__(self, name, center, color_ind, geometry):
+    def __init__(self, name, center, color_ind, geometries):
         self.name = name
         self.initial_rot = 0
         self.center = center
         self.color_ind = color_ind
         self.x = 45 + center[0]
         self.y = 14 + center[1]
-        self.geometry = geometry  # based on (row,col)
+        self.geometries = geometries  # list of 4 geometries
+        self.geometry = geometries[0]
 
     def rotate_left(self):
-        self.initial_rot -= 1
-        self.initial_rot = self.initial_rot % 4
+        self.initial_rot = (self.initial_rot - 1) % 4
+        self.geometry = self.geometries[self.initial_rot]
         self.name = self.name[:-1] + str(self.initial_rot)
 
     def rotate_right(self):
-        self.initial_rot += 1
-        self.initial_rot = self.initial_rot % 4
+        self.initial_rot = (self.initial_rot + 1) % 4
+        self.geometry = self.geometries[self.initial_rot]
         self.name = self.name[:-1] + str(self.initial_rot)
 
 
@@ -27,59 +27,99 @@ TETRIS_I = TETROMINO(
     "tetris_i_0",
     center=(0, 0),
     color_ind="1",
-    geometry=[(0, 0), (1, 0), (2, 0), (3, 0)],
+    geometries=[
+        [(0, 0), (1, 0), (2, 0), (3, 0)],
+        [(0, 0), (0, 1), (0, 2), (0, 3)],
+        [(0, 0), (1, 0), (2, 0), (3, 0)],
+        [(0, 0), (0, 1), (0, 2), (0, 3)],
+    ],
 )
+
 TETRIS_J = TETROMINO(
     "tetris_j_0",
     center=(0, 0),
     color_ind="2",
-    geometry=[(0, 1), (1, 1), (2, 1), (2, 0)],
+    geometries=[
+        [(0, 1), (1, 1), (2, 1), (2, 0)],
+        [(1, 0), (1, 1), (1, 2), (0, 2)],
+        [(0, 0), (0, 1), (1, 0), (2, 0)],
+        [(0, 0), (1, 0), (1, 1), (1, 2)],
+    ],
 )
+
 TETRIS_L = TETROMINO(
     "tetris_l_0",
     center=(0, 0),
     color_ind="3",
-    geometry=[(0, 0), (1, 0), (2, 0), (2, 1)],
+    geometries=[
+        [(0, 0), (1, 0), (2, 0), (2, 1)],
+        [(0, 0), (0, 1), (0, 2), (1, 0)],
+        [(0, 0), (0, 1), (1, 1), (2, 1)],
+        [(0, 2), (1, 0), (1, 1), (1, 2)],
+    ],
 )
+
 TETRIS_O = TETROMINO(
     "tetris_o_0",
     center=(0, 0),
     color_ind="4",
-    geometry=[(0, 0), (1, 0), (0, 1), (1, 1)],
+    geometries=[
+        [(0, 0), (1, 0), (0, 1), (1, 1)],
+        [(0, 0), (1, 0), (0, 1), (1, 1)],
+        [(0, 0), (1, 0), (0, 1), (1, 1)],
+        [(0, 0), (1, 0), (0, 1), (1, 1)],
+    ],
 )
+
 TETRIS_S = TETROMINO(
     "tetris_s_0",
     center=(0, 0),
     color_ind="5",
-    geometry=[(1, 0), (1, 1), (0, 1), (0, 2)],
+    geometries=[
+        [(1, 0), (1, 1), (0, 1), (0, 2)],
+        [(0, 0), (1, 0), (1, 1), (2, 1)],
+        [(1, 0), (1, 1), (0, 1), (0, 2)],
+        [(0, 0), (1, 0), (1, 1), (2, 1)],
+    ],
 )
+
 TETRIS_T = TETROMINO(
     "tetris_t_0",
     center=(0, 0),
     color_ind="6",
-    geometry=[(1, 0), (0, 1), (1, 1), (1, 2)],
+    geometries=[
+        [(1, 0), (0, 1), (1, 1), (1, 2)],
+        [(0, 1), (1, 0), (1, 1), (2, 1)],
+        [(0, 0), (0, 1), (0, 2), (1, 1)],
+        [(0, 1), (1, 0), (1, 1), (2, 1)],
+    ],
 )
+
 TETRIS_Z = TETROMINO(
     "tetris_z_0",
     center=(0, 0),
     color_ind="7",
-    geometry=[(0, 0), (0, 1), (1, 1), (1, 2)],
+    geometries=[
+        [(0, 0), (0, 1), (1, 1), (1, 2)],
+        [(1, 0), (0, 0), (1, 1), (2, 1)],
+        [(0, 0), (0, 1), (1, 1), (1, 2)],
+        [(1, 0), (0, 0), (1, 1), (2, 1)],
+    ],
 )
 
-TETROMINOS = [
-    TETRIS_I,
-    TETRIS_J,
-    TETRIS_L,
-    TETRIS_O,
-    TETRIS_S,
-    TETRIS_T,
-    TETRIS_Z,
-]
+TETROMINOS = [TETRIS_I, TETRIS_J, TETRIS_L, TETRIS_O, TETRIS_S, TETRIS_T, TETRIS_Z]
 
 LEFT_BOUND = 5
 RIGHT_BOUND = 34
 BOTTOM_BOUND = 69
 TOP_BOUND = 10
+
+
+def shuffle(lst):
+    n = len(lst)
+    for i in range(n - 1, 0, -1):
+        j = random.randint(0, i)  # pick random index in [0, i]
+        lst[i], lst[j] = lst[j], lst[i]
 
 
 class Tetris:
@@ -89,10 +129,11 @@ class Tetris:
         self.refill_bag()
         self.current_piece = self.get_tetris_piece()
         self.current_piece.x = 17
+        self.current_piece.y = TOP_BOUND
         self.next_piece = self.get_tetris_piece()
-        self.board = [["0"] * 10 for i in range(20)]
-        self.i = 0
+        self.board = [["0"] * 10 for _ in range(20)]
         self.game_over = False
+        self.i = 0
 
     def step(self, keypressed):
         """
@@ -121,10 +162,10 @@ class Tetris:
 
             if keypressed[4]:
                 print("Rotate anticlockwise")
-                self.current_piece.rotate_left()
+                self.try_rotate_left()
             elif keypressed[5]:
                 print("Rotate clockwise")
-                self.current_piece.rotate_right()
+                self.try_rotate_right()
 
             if keypressed[2]:  # down arrow key, soft drop # go fast logic here
                 print("Going Fast!")
@@ -136,6 +177,7 @@ class Tetris:
                 self.current_piece
             ):  # check intersection and if it intersects then add it to the board!
                 self.add_tetromino_to_board(self.current_piece)
+                self.clear_full_rows()
                 self.current_piece = self.next_piece
                 self.current_piece.x = 17
                 self.current_piece.y = TOP_BOUND
@@ -151,14 +193,127 @@ class Tetris:
             )  # blit the next piece in its place.
 
             self.os.display_num(score, 48, 39, align="right")  # display highscore
-            # print(self.board)
             self.blit_board()
         else:
             self.i += 1
 
+    def can_rotate(self, tetromino, new_geometry):
+        """Check if rotating into new_geometry is valid (no collisions or out-of-bounds)."""
+        row, col = self.get_row_col_from_pixel(tetromino.x, tetromino.y)
+
+        for row_offset, col_offset in new_geometry:
+            # Compute absolute position
+            r = row + row_offset
+            c = col + col_offset
+
+            # Bounds check
+            if r < 0 or r >= len(self.board) or c < 0 or c >= len(self.board[0]):
+                return False
+
+            # Collision check
+            if self.board[r][c] != "0":
+                return False
+        return True
+
+    def try_rotate_left(self):
+        """Rotate left only if safe"""
+        next_rot = (self.current_piece.initial_rot - 1) % 4
+        new_geometry = self.current_piece.geometries[next_rot]
+
+        if self.can_rotate(self.current_piece, new_geometry):
+            self.current_piece.rotate_left()
+
+    def try_rotate_right(self):
+        """Rotate right only if safe"""
+        next_rot = (self.current_piece.initial_rot + 1) % 4
+        new_geometry = self.current_piece.geometries[next_rot]
+
+        if self.can_rotate(self.current_piece, new_geometry):
+            self.current_piece.rotate_right()
+
     def refill_bag(self):
-        self.current_bag.extend(copy.deepcopy(TETROMINOS))
-        random.shuffle(self.current_bag)
+        self.current_bag.extend(
+            [
+                TETROMINO(
+                    "tetris_i_0",
+                    center=(0, 0),
+                    color_ind="1",
+                    geometries=[
+                        [(0, 0), (1, 0), (2, 0), (3, 0)],
+                        [(0, 0), (0, 1), (0, 2), (0, 3)],
+                        [(0, 0), (1, 0), (2, 0), (3, 0)],
+                        [(0, 0), (0, 1), (0, 2), (0, 3)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_j_0",
+                    center=(0, 0),
+                    color_ind="2",
+                    geometries=[
+                        [(0, 1), (1, 1), (2, 1), (2, 0)],
+                        [(1, 0), (1, 1), (1, 2), (0, 2)],
+                        [(0, 0), (0, 1), (1, 0), (2, 0)],
+                        [(0, 0), (1, 0), (1, 1), (1, 2)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_l_0",
+                    center=(0, 0),
+                    color_ind="3",
+                    geometries=[
+                        [(0, 0), (1, 0), (2, 0), (2, 1)],
+                        [(0, 0), (0, 1), (0, 2), (1, 0)],
+                        [(0, 0), (0, 1), (1, 1), (2, 1)],
+                        [(0, 2), (1, 0), (1, 1), (1, 2)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_o_0",
+                    center=(0, 0),
+                    color_ind="4",
+                    geometries=[
+                        [(0, 0), (1, 0), (0, 1), (1, 1)],
+                        [(0, 0), (1, 0), (0, 1), (1, 1)],
+                        [(0, 0), (1, 0), (0, 1), (1, 1)],
+                        [(0, 0), (1, 0), (0, 1), (1, 1)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_s_0",
+                    center=(0, 0),
+                    color_ind="5",
+                    geometries=[
+                        [(1, 0), (1, 1), (0, 1), (0, 2)],
+                        [(0, 0), (1, 0), (1, 1), (2, 1)],
+                        [(1, 0), (1, 1), (0, 1), (0, 2)],
+                        [(0, 0), (1, 0), (1, 1), (2, 1)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_t_0",
+                    center=(0, 0),
+                    color_ind="6",
+                    geometries=[
+                        [(1, 0), (0, 1), (1, 1), (1, 2)],
+                        [(0, 1), (1, 0), (1, 1), (2, 1)],
+                        [(0, 0), (0, 1), (0, 2), (1, 1)],
+                        [(0, 1), (1, 0), (1, 1), (2, 1)],
+                    ],
+                ),
+                TETROMINO(
+                    "tetris_z_0",
+                    center=(0, 0),
+                    color_ind="7",
+                    geometries=[
+                        [(0, 0), (0, 1), (1, 1), (1, 2)],
+                        [(1, 0), (0, 0), (1, 1), (2, 1)],
+                        [(0, 0), (0, 1), (1, 1), (1, 2)],
+                        [(1, 0), (0, 0), (1, 1), (2, 1)],
+                    ],
+                ),
+            ]
+        )
+        shuffle(self.current_bag)
 
     def get_tetris_piece(self):
         if len(self.current_bag) == 0:
@@ -166,12 +321,14 @@ class Tetris:
         return self.current_bag.pop(0)
 
     def clear_row(self, row_num):
-        if row_num < 0 or row_num >= len(self.board):
-            return
-        # remove the row
-        del self.board[row_num]
-        # insert an empty row at top
-        self.board.insert(0, ["0"] * 10)
+        if 0 <= row_num < len(self.board):
+            del self.board[row_num]
+            self.board.insert(0, ["0"] * 10)
+
+    def clear_full_rows(self):
+        for r in range(len(self.board)):
+            if all(cell != "0" for cell in self.board[r]):
+                self.clear_row(r)
 
     def get_row_col_from_pixel(self, x, y):
         col = (x - LEFT_BOUND) // 3
@@ -199,6 +356,11 @@ class Tetris:
         ):  # because we are talking about intersection in the next step. we will
             print("row,col: ", row + row_offset + 1, col + col_offset)
             print("tetromino.geometry", tetromino.geometry)
+            if (
+                self.board[row + row_offset][col + col_offset] != "0"
+            ):  # this is wrong as it is still incomplete! check all geometry because return yes.
+                self.die()
+                return False
             if (tetromino.y + 2) + (row_offset * 3) == BOTTOM_BOUND or self.board[
                 row + row_offset + 1
             ][col + col_offset] != "0":
