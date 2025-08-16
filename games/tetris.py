@@ -48,7 +48,7 @@ class Tetris:
         self.refill_bag()
         self.current_piece = self.get_tetris_piece()
         self.next_piece = self.get_tetris_piece()
-        self.board = [["0"] * 10] * 20
+        self.board = [["0"] * 10 for i in range(20)]
         self.i = 0
 
     def step(self, keypressed):
@@ -142,8 +142,8 @@ class Tetris:
 
     def add_tetromino_to_board(self, tetromino):
         # convert x and y to row and column of the board
-        row = 4
-        col = 7
+        row = 19
+        col = 5
         self.board[row][col] = tetromino.color_ind
 
     def die(self):
