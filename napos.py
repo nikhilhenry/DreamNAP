@@ -24,6 +24,9 @@ class NAPOperatingSystem:
         """
         self.driver.blit(asset_id, x, y)
 
+    def clear_screen(self):
+        self.driver.clear_screen()
+
     def display_num(self, number, x, y, align="left"):
         """
         Display the number on the screen.

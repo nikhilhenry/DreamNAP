@@ -2,6 +2,7 @@ class Aliens:
     def __init__(self, os):
         self.os = os
         self.selected_index = 0
+        self.os.clear_screen()
 
     def step(self, keypressed):
         """

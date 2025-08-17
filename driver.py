@@ -265,6 +265,12 @@ class Driver:
         with open(complete_path, "rb") as file:
             return file.read()
 
+    def clear_screen(self):
+        """
+        Clear the display.
+        """
+        self.display.fill((0, 1, 0))
+
     def rgb_led_show(self):
         """
         Show the RGB LED strip.
