@@ -58,7 +58,7 @@ class Tetris:
             self.os.rgb_led[i] = color
         self.led_timer = -duration  # negative timer pauses animation temporarily
 
-    def _blink_leds(self, color, times=50, interval=5):
+    def _blink_leds(self, color, times=5000, interval=5):
         """Blink all LEDs a few times with given color"""
         self.blink_color = color
         self.blink_times = times * 2  # on/off counts

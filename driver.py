@@ -31,16 +31,20 @@ class Driver:
             "7": pygame.image.load("assets/font_pack/7.png").convert_alpha(),
             "8": pygame.image.load("assets/font_pack/8.png").convert_alpha(),
             "9": pygame.image.load("assets/font_pack/9.png").convert_alpha(),
-            "load1": pygame.image.load("assets/utils/loading1.png").convert_alpha(),
-            "load2": pygame.image.load("assets/utils/loading2.png").convert_alpha(),
-            "load3": pygame.image.load("assets/utils/loading3.png").convert_alpha(),
-            "load4": pygame.image.load("assets/utils/loading4.png").convert_alpha(),
-            "load5": pygame.image.load("assets/utils/loading5.png").convert_alpha(),
-            "load6": pygame.image.load("assets/utils/loading6.png").convert_alpha(),
-            "load7": pygame.image.load("assets/utils/loading7.png").convert_alpha(),
-            "load8": pygame.image.load("assets/utils/loading8.png").convert_alpha(),
-            "load9": pygame.image.load("assets/utils/loading9.png").convert_alpha(),
-            "load10": pygame.image.load("assets/utils/loading10.png").convert_alpha(),
+            "dot": pygame.image.load("assets/font_pack/dot.png").convert_alpha(),
+            "v": pygame.image.load("assets/font_pack/v.png").convert_alpha(),
+            "loading1": pygame.image.load("assets/utils/loading1.png").convert_alpha(),
+            "loading2": pygame.image.load("assets/utils/loading2.png").convert_alpha(),
+            "loading3": pygame.image.load("assets/utils/loading3.png").convert_alpha(),
+            "loading4": pygame.image.load("assets/utils/loading4.png").convert_alpha(),
+            "loading5": pygame.image.load("assets/utils/loading5.png").convert_alpha(),
+            "loading6": pygame.image.load("assets/utils/loading6.png").convert_alpha(),
+            "loading7": pygame.image.load("assets/utils/loading7.png").convert_alpha(),
+            "loading8": pygame.image.load("assets/utils/loading8.png").convert_alpha(),
+            "loading9": pygame.image.load("assets/utils/loading9.png").convert_alpha(),
+            "loading10": pygame.image.load(
+                "assets/utils/loading10.png"
+            ).convert_alpha(),
             "playagain": pygame.image.load(
                 "assets/utils/playagain.png"
             ).convert_alpha(),
@@ -69,6 +73,7 @@ class Driver:
             "heart_1by3": pygame.image.load("assets/utils/hearts1.png").convert_alpha(),
             "heart_2by3": pygame.image.load("assets/utils/hearts2.png").convert_alpha(),
             "heart_3by3": pygame.image.load("assets/utils/hearts3.png").convert_alpha(),
+            "ball": pygame.image.load("assets/utils/ball.png").convert_alpha(),
             "alien_boss": pygame.image.load("assets/aliens/boss.png").convert_alpha(),
             "alien_cat": pygame.image.load("assets/aliens/cat.png").convert_alpha(),
             "alien_shield_1by3": pygame.image.load(

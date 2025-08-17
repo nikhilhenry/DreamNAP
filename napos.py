@@ -1,4 +1,4 @@
-from games import Menu, Aliens, Tetris
+from games import Menu, Aliens, Tetris, Demo
 
 
 class NAPOperatingSystem:
@@ -33,10 +33,24 @@ class NAPOperatingSystem:
         """
         if align == "left":
             for i, digit in enumerate(str(number)):
-                self.driver.blit(digit, x + i * 6, y)
+                if digit == ".":
+                    self.driver.blit(
+                        "dot",
+                        x + i * 6,
+                        y,
+                    )
+                else:
+                    self.driver.blit(digit, x + i * 6, y)
         elif align == "right":
             for i, digit in enumerate(reversed(str(number))):
-                self.driver.blit(digit, x - i * 6, y)
+                if digit == ".":
+                    self.driver.blit(
+                        "dot",
+                        x + i * 6,
+                        y,
+                    )
+                else:
+                    self.driver.blit(digit, x - i * 6, y)
 
     def store_score(self, game, score):
         current_content = self.driver.read_file("/high_scores.txt").decode()
@@ -67,6 +81,9 @@ class NAPOperatingSystem:
             self.current_scene = Aliens(self)
         elif scene_name == "tetris":
             self.current_scene = Tetris(self)
+        elif scene_name == "demo":
+            self.current_scene = Demo(self)
+
         else:
             raise ValueError(f"Unknown scene: {scene_name}")
 
@@ -74,3 +91,9 @@ class NAPOperatingSystem:
         for i, color in enumerate(self.rgb_led):
             self.driver.rgb_led[i] = (color[1], color[0], color[2])
         self.driver.rgb_led_show()
+
+    def blit_battery(self, x, y):  # PRANJAL REPLACE THIS BRO THANSK!
+        self.blit("battery_1by7", x, y)
+
+    def get_voltage(self):
+        return 3.1
