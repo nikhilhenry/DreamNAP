@@ -84,6 +84,8 @@ class Driver:
             "alien_ufo1": pygame.image.load("assets/aliens/ufo1.png").convert_alpha(),
             "alien_ufo2": pygame.image.load("assets/aliens/ufo2.png").convert_alpha(),
             "alien_ufo3": pygame.image.load("assets/aliens/ufo3.png").convert_alpha(),
+            "alien_laser": pygame.image.load("assets/aliens/laser.png").convert_alpha(),
+            "alien_over": pygame.image.load("assets/aliens/over.png").convert_alpha(),
             "tetris_1": pygame.image.load("assets/tetris/tetris_1.png").convert_alpha(),
             "tetris_2": pygame.image.load("assets/tetris/tetris_2.png").convert_alpha(),
             "tetris_3": pygame.image.load("assets/tetris/tetris_3.png").convert_alpha(),
