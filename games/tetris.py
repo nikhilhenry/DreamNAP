@@ -23,92 +23,6 @@ class TETROMINO:
         self.name = self.name[:-1] + str(self.initial_rot)
 
 
-TETRIS_I = TETROMINO(
-    "tetris_i_0",
-    center=(0, 0),
-    color_ind="1",
-    geometries=[
-        [(0, 0), (1, 0), (2, 0), (3, 0)],
-        [(0, 0), (0, 1), (0, 2), (0, 3)],
-        [(0, 0), (1, 0), (2, 0), (3, 0)],
-        [(0, 0), (0, 1), (0, 2), (0, 3)],
-    ],
-)
-
-TETRIS_J = TETROMINO(
-    "tetris_j_0",
-    center=(0, 0),
-    color_ind="2",
-    geometries=[
-        [(0, 1), (1, 1), (2, 1), (2, 0)],
-        [(1, 0), (1, 1), (1, 2), (0, 2)],
-        [(0, 0), (0, 1), (1, 0), (2, 0)],
-        [(0, 0), (1, 0), (1, 1), (1, 2)],
-    ],
-)
-
-TETRIS_L = TETROMINO(
-    "tetris_l_0",
-    center=(0, 0),
-    color_ind="3",
-    geometries=[
-        [(0, 0), (1, 0), (2, 0), (2, 1)],
-        [(0, 0), (0, 1), (0, 2), (1, 0)],
-        [(0, 0), (0, 1), (1, 1), (2, 1)],
-        [(0, 2), (1, 0), (1, 1), (1, 2)],
-    ],
-)
-
-TETRIS_O = TETROMINO(
-    "tetris_o_0",
-    center=(0, 0),
-    color_ind="4",
-    geometries=[
-        [(0, 0), (1, 0), (0, 1), (1, 1)],
-        [(0, 0), (1, 0), (0, 1), (1, 1)],
-        [(0, 0), (1, 0), (0, 1), (1, 1)],
-        [(0, 0), (1, 0), (0, 1), (1, 1)],
-    ],
-)
-
-TETRIS_S = TETROMINO(
-    "tetris_s_0",
-    center=(0, 0),
-    color_ind="5",
-    geometries=[
-        [(1, 0), (1, 1), (0, 1), (0, 2)],
-        [(0, 0), (1, 0), (1, 1), (2, 1)],
-        [(1, 0), (1, 1), (0, 1), (0, 2)],
-        [(0, 0), (1, 0), (1, 1), (2, 1)],
-    ],
-)
-
-TETRIS_T = TETROMINO(
-    "tetris_t_0",
-    center=(0, 0),
-    color_ind="6",
-    geometries=[
-        [(1, 0), (0, 1), (1, 1), (1, 2)],
-        [(0, 1), (1, 0), (1, 1), (2, 1)],
-        [(0, 0), (0, 1), (0, 2), (1, 1)],
-        [(0, 1), (1, 0), (1, 1), (2, 1)],
-    ],
-)
-
-TETRIS_Z = TETROMINO(
-    "tetris_z_0",
-    center=(0, 0),
-    color_ind="7",
-    geometries=[
-        [(0, 0), (0, 1), (1, 1), (1, 2)],
-        [(1, 0), (0, 0), (1, 1), (2, 1)],
-        [(0, 0), (0, 1), (1, 1), (1, 2)],
-        [(1, 0), (0, 0), (1, 1), (2, 1)],
-    ],
-)
-
-TETROMINOS = [TETRIS_I, TETRIS_J, TETRIS_L, TETRIS_O, TETRIS_S, TETRIS_T, TETRIS_Z]
-
 LEFT_BOUND = 5
 RIGHT_BOUND = 34
 BOTTOM_BOUND = 69
@@ -142,58 +56,69 @@ class Tetris:
         if self.game_over:
             print("Game Over")
             return
-        if self.i == 0:
+
+        # Track the most recent single key pressed
+        key_id = None
+        for i, pressed in enumerate(keypressed):
+            if pressed:
+                key_id = i  # overwrite → ensures "last pressed before tick"
+        if key_id is not None:
+            self.keybuffer = key_id
+
+        if self.i == 6:
             self.i = 0
-            # print(self.board)
             score = self.os.get_score("tetris")
             self.os.blit("tetris_board", 0, 0)
 
-            if keypressed[0]:  # hard drop
+            # Use the buffered key (if any)
+            k = getattr(self, "keybuffer", None)
+
+            if k == 0:  # hard drop
                 pass
-            elif keypressed[1]:  # left arrow key
+            elif k == 1:  # left arrow
                 if self.current_piece.x > LEFT_BOUND:
                     print("Moving left")
-                    self.current_piece.x = self.current_piece.x - 3
-
-            elif keypressed[3]:  # right arrow key
-                if self.current_piece.x < RIGHT_BOUND:
+                    self.current_piece.x -= 3
+            elif k == 3:  # right arrow
+                if (
+                    self.current_piece.x
+                    + (max([x for x, y in self.current_piece.geometry]) * 3)
+                    + 1
+                    < RIGHT_BOUND
+                ):
                     print("Moving right")
-                    self.current_piece.x = self.current_piece.x + 3
-
-            if keypressed[4]:
+                    self.current_piece.x += 3
+            elif k == 4:  # rotate anticlockwise
                 print("Rotate anticlockwise")
                 self.try_rotate_left()
-            elif keypressed[5]:
+            elif k == 5:  # rotate clockwise
                 print("Rotate clockwise")
                 self.try_rotate_right()
 
-            if keypressed[2]:  # down arrow key, soft drop # go fast logic here
+            # Always move down
+            if k == 2:  # soft drop
                 print("Going Fast!")
-                self.current_piece.y = self.current_piece.y + 1
-            else:
-                self.current_piece.y = self.current_piece.y + 1
+                self.current_piece.y += 1
+            self.current_piece.y += 1
 
-            if self.verify_and_check_intersection(
-                self.current_piece
-            ):  # check intersection and if it intersects then add it to the board!
+            if self.verify_and_check_intersection(self.current_piece):
                 self.add_tetromino_to_board(self.current_piece)
                 self.clear_full_rows()
                 self.current_piece = self.next_piece
                 self.current_piece.x = 17
                 self.current_piece.y = TOP_BOUND
-                # change the current piece to next one
-                self.next_piece = self.get_tetris_piece()  # get the new next one
+                self.next_piece = self.get_tetris_piece()
             else:
                 self.os.blit(
                     self.current_piece.name, self.current_piece.x, self.current_piece.y
-                )  # usual current piece blit
+                )
 
-            self.os.blit(
-                self.next_piece.name, self.next_piece.x, self.next_piece.y
-            )  # blit the next piece in its place.
-
-            self.os.display_num(score, 48, 39, align="right")  # display highscore
+            self.os.blit(self.next_piece.name, self.next_piece.x, self.next_piece.y)
+            self.os.display_num(score, 48, 39, align="right")
             self.blit_board()
+
+            self.keybuffer = None
+
         else:
             self.i += 1
 
@@ -251,9 +176,9 @@ class Tetris:
                     color_ind="2",
                     geometries=[
                         [(0, 1), (1, 1), (2, 1), (2, 0)],
-                        [(1, 0), (1, 1), (1, 2), (0, 2)],
-                        [(0, 0), (0, 1), (1, 0), (2, 0)],
                         [(0, 0), (1, 0), (1, 1), (1, 2)],
+                        [(0, 0), (0, 1), (1, 0), (2, 0)],
+                        [(0, 0), (0, 1), (0, 2), (1, 2)],
                     ],
                 ),
                 TETROMINO(
@@ -295,7 +220,7 @@ class Tetris:
                     color_ind="6",
                     geometries=[
                         [(1, 0), (0, 1), (1, 1), (1, 2)],
-                        [(0, 1), (1, 0), (1, 1), (2, 1)],
+                        [(0, 0), (1, 0), (1, 1), (2, 0)],
                         [(0, 0), (0, 1), (0, 2), (1, 1)],
                         [(0, 1), (1, 0), (1, 1), (2, 1)],
                     ],
@@ -306,9 +231,9 @@ class Tetris:
                     color_ind="7",
                     geometries=[
                         [(0, 0), (0, 1), (1, 1), (1, 2)],
-                        [(1, 0), (0, 0), (1, 1), (2, 1)],
+                        [(0, 1), (1, 0), (1, 1), (2, 0)],
                         [(0, 0), (0, 1), (1, 1), (1, 2)],
-                        [(1, 0), (0, 0), (1, 1), (2, 1)],
+                        [(0, 1), (1, 0), (1, 1), (2, 0)],
                     ],
                 ),
             ]
@@ -354,8 +279,6 @@ class Tetris:
         ) in (
             tetromino.geometry
         ):  # because we are talking about intersection in the next step. we will
-            print("row,col: ", row + row_offset + 1, col + col_offset)
-            print("tetromino.geometry", tetromino.geometry)
             if (
                 self.board[row + row_offset][col + col_offset] != "0"
             ):  # this is wrong as it is still incomplete! check all geometry because return yes.
